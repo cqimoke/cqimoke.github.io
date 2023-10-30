@@ -3,11 +3,11 @@
   <title>默克笔记</title>
   
   
-  <link href="https://cqimoke.github.io/atom.xml" rel="self"/>
+  <link href="https://imoke.win/atom.xml" rel="self"/>
   
-  <link href="https://cqimoke.github.io/"/>
+  <link href="https://imoke.win/"/>
   <updated>2023-10-24T15:32:39.224Z</updated>
-  <id>https://cqimoke.github.io/</id>
+  <id>https://imoke.win/</id>
   
   <author>
     <name>imoke</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hexo+Github搭建个人网站经验</title>
-    <link href="https://cqimoke.github.io/2023/10/23/1915/"/>
-    <id>https://cqimoke.github.io/2023/10/23/1915/</id>
+    <link href="https://imoke.win/2023/10/23/1915/"/>
+    <id>https://imoke.win/2023/10/23/1915/</id>
     <published>2023-10-23T11:15:29.000Z</published>
     <updated>2023-10-24T15:32:39.224Z</updated>
     
@@ -35,14 +35,14 @@
     
     
     
-    <category term="Hexo" scheme="https://cqimoke.github.io/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://imoke.win/tags/Hexo/"/>
     
   </entry>
   
   <entry>
     <title>读了 3000 篇公众号文章后，我决定自己建个论坛</title>
-    <link href="https://cqimoke.github.io/2023/10/23/1715/"/>
-    <id>https://cqimoke.github.io/2023/10/23/1715/</id>
+    <link href="https://imoke.win/2023/10/23/1715/"/>
+    <id>https://imoke.win/2023/10/23/1715/</id>
     <published>2023-10-23T09:15:29.000Z</published>
     <updated>2023-10-24T14:00:54.292Z</updated>
     
@@ -58,7 +58,7 @@
     
     
     
-    <category term="Hexo" scheme="https://cqimoke.github.io/tags/Hexo/"/>
+    <category term="Hexo" scheme="https://imoke.win/tags/Hexo/"/>
     
   </entry>
   
