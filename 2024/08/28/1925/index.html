@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="使用 acme.sh 给 Nginx 安装 Let’ s Encrypt 提供的免费 SSL 证书, 默克笔记">
+    <meta name="keywords" content="中式美学的优雅浪漫，全新岚图梦想家, 默克笔记">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>使用 acme.sh 给 Nginx 安装 Let’ s Encrypt 提供的免费 SSL 证书 | 默克笔记</title>
+    <title>中式美学的优雅浪漫，全新岚图梦想家 | 默克笔记</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -228,12 +228,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/37.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/def7b280-a32d-4bc5-a322-687b082aa55d-1724927899000.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">使用 acme.sh 给 Nginx 安装 Let’ s Encrypt 提供的免费 SSL 证书</h1>
+                    <h1 class="description center-align post-title">中式美学的优雅浪漫，全新岚图梦想家</h1>
                 </div>
             </div>
         </div>
@@ -349,14 +349,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%BD%91%E7%AB%99/">
-                                <span class="chip bg-color">网站</span>
+                            <a href="/tags/%E5%B2%9A%E5%9B%BE%E6%A2%A6%E6%83%B3%E5%AE%B6/">
+                                <span class="chip bg-color">岚图梦想家</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B2%9A%E5%9B%BE%E6%A2%A6%E6%83%B3%E5%AE%B6/" class="post-category">
+                                岚图梦想家
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -365,7 +374,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-06-17
+                    2024-08-28
                 </div>
                 
 
@@ -386,134 +395,41 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>现在新建网站基本全部都要配置 SSL ，可以通过服务器提供商提供的免费 SSL 进行部署，但是有一个缺点，就是有效期一般只有一年，需要每年重新申请，重新安装，之前一直用 Let’s Encrypt 进行部署，防止后面忘记了，写一个记录。</p>
-<h2 id="安装-acme-sh"><a href="#安装-acme-sh" class="headerlink" title="安装 acme.sh"></a>安装 acme.sh</h2><pre class=" language-shell"><code class="language-shell">curl https://get.acme.sh | sh
-</code></pre>
-<blockquote>
-<p>第一次可能会遇到 <code>curl: (6) Couldn't resolve host 'get.acme.sh'</code> 重试一下就可以了。</p>
-</blockquote>
-<p>然后重新载入一下 <code>.bashrc</code></p>
-<pre class=" language-shell"><code class="language-shell">source ~/.bashrc 
-</code></pre>
-<p>之后就有了 <code>acme.sh</code> 的命令，可以直接运行。</p>
-<h2 id="申请签发-SSL-证书"><a href="#申请签发-SSL-证书" class="headerlink" title="申请签发 SSL 证书"></a>申请签发 SSL 证书</h2><pre class=" language-shell"><code class="language-shell">acme.sh --issue -d www.your-app.com -w /home/www/your-app/current/public
-</code></pre>
-<blockquote>
-<p>上面这段过程将会往 <code>/home/www/your-app/current/public</code> 创建一个 <code>.well-known</code> 的文件夹，同时 Let’s Encrypt 将会通过你要注册的域名去访问那个文件来确定权限，它可能会去访问 <a target="_blank" rel="noopener" href="http://www.your-app.com/.well-known/">http://www.your-app.com/.well-known/</a> 这个路径。</p>
-<p>所以你需要确保 <code>/home/www/your-app/current/public</code> 是在 Nginx 上配置成 root 目录，里面任意文件可以直接域名访问的。</p>
-</blockquote>
-<p>如果成功的话，你就会看到这样的结果：</p>
-<pre class=" language-shell"><code class="language-shell">[Fri Dec 23 11:20:15 CST 2016] Renew: 'www.your-app.com'
-[Fri Dec 23 11:20:15 CST 2016] Single domain='www.your-app.com'
-[Fri Dec 23 11:20:15 CST 2016] Getting domain auth token for each domain
-[Fri Dec 23 11:20:15 CST 2016] Getting webroot for domain='www.your-app.com'
-[Fri Dec 23 11:20:15 CST 2016] _w='/home/www/your-app/current/public/'
-[Fri Dec 23 11:20:15 CST 2016] Getting new-authz for domain='www.your-app.com'
-[Fri Dec 23 11:08:57 CST 2016] The new-authz request is ok.
-[Fri Dec 23 11:08:57 CST 2016] Verifying:www.your-app.com
-[Fri Dec 23 11:09:01 CST 2016] Success
-[Fri Dec 23 11:09:01 CST 2016] Verify finished, start to sign.
-[Fri Dec 23 11:09:02 CST 2016] Cert success.
------BEGIN CERTIFICATE-----
-...
------END CERTIFICATE-----
-[Fri Dec 23 11:09:02 CST 2016] Your cert is in  /home/.acme.sh/www.your-app.com/www.your-app.com.cer 
-[Fri Dec 23 11:09:02 CST 2016] Your cert key is in  /home/.acme.sh/www.your-app.com/www.your-app.com.key 
-[Fri Dec 23 11:09:04 CST 2016] The intermediate CA cert is in  /home/.acme.sh/www.your-app.com/ca.cer 
-[Fri Dec 23 11:09:04 CST 2016] And the full chain certs is there:  /home/.acme.sh/www.your-app.com/fullchain.cer 
-</code></pre>
-<p>你的证书文件已经申请成功了，并放到了 <code>~/.acme.sh/</code> 目录里面。</p>
-<blockquote>
-<p>所有的 acme.sh 配置都记录在 <code>~/.acme.sh/</code> 目录里面，acme.sh 有自动的配置读取，并按域名划分，下次你再次执行的时候，它知道你之前是用的那个目录，只需要告诉它域名就好了。</p>
-</blockquote>
-<h2 id="将-SSL-证书安装到网站的路径，并配置好-restart-Nginx-的动作"><a href="#将-SSL-证书安装到网站的路径，并配置好-restart-Nginx-的动作" class="headerlink" title="将 SSL 证书安装到网站的路径，并配置好 restart Nginx 的动作"></a>将 SSL 证书安装到网站的路径，并配置好 restart Nginx 的动作</h2><blockquote>
-<p>这个比较重要，因为它会让 <code>acme.sh</code> 记住重启 Nginx 的命令，以后自动更新证书的动作需要重启 Nginx</p>
-</blockquote>
-<pre class=" language-shell"><code class="language-shell">acme.sh --installcert -d www.your-app.com \
-               --keypath       /home/www/ssl/www.your-app.com.key  \
-               --fullchainpath /home/www/ssl/www.your-app.com.key.pem \
-               --reloadcmd     "sudo service nginx force-reload"
-</code></pre>
-<p>然后你会看到结果</p>
-<pre class=" language-shell"><code class="language-shell">[Fri Dec 23 11:59:57 CST 2016] Installing key to:/home/www/ssl/www.your-app.com.key
-[Fri Dec 23 11:59:57 CST 2016] Installing full chain to:/home/www/ssl/www.your-app.com.key.pem
-[Fri Dec 23 11:59:57 CST 2016] Run Le_ReloadCmd: sudo service nginx force-reload
-Restarting nginx: nginx.
-[Fri Dec 23 11:59:58 CST 2016] Reload success
-</code></pre>
-<h2 id="修改一下-sudoer-文件，让-sudo-service-nginx-force-reload-不需要输入密码"><a href="#修改一下-sudoer-文件，让-sudo-service-nginx-force-reload-不需要输入密码" class="headerlink" title="修改一下 sudoer 文件，让 sudo service nginx force-reload 不需要输入密码"></a>修改一下 sudoer 文件，让 <code>sudo service nginx force-reload</code> 不需要输入密码</h2><pre class=" language-shell"><code class="language-shell">sudo visudo
-</code></pre>
-<p>打开文件以后新增：</p>
-<pre class=" language-shell"><code class="language-shell">ubuntu  ALL=(ALL) NOPASSWD: /usr/sbin/service nginx force-reload
-</code></pre>
-<blockquote>
-<p><code>ubuntu</code> 是 acme.sh 安装所用的账号</p>
-</blockquote>
-<h2 id="生成-dhparam-pem-文件"><a href="#生成-dhparam-pem-文件" class="headerlink" title="生成 dhparam.pem 文件"></a>生成 dhparam.pem 文件</h2><pre class=" language-shell"><code class="language-shell">openssl dhparam -out /home/www/ssl/dhparam.pem 2048
-</code></pre>
-<h2 id="修改-Nginx-启用-SSL"><a href="#修改-Nginx-启用-SSL" class="headerlink" title="修改 Nginx 启用 SSL"></a>修改 Nginx 启用 SSL</h2><pre class=" language-shell"><code class="language-shell">http {
-  # 新增
-  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-  ssl_prefer_server_ciphers on;
-  # 兼容其他老浏览器的 ssl_ciphers 设置请访问 https://wiki.mozilla.org/Security/Server_Side_TLS
-
-  server {
-    listen 80 default_server;
-    # 新增
-    listen 443 ssl;
-    ssl_certificate         /home/ubuntu/www/ssl/www.your-app.com.key.pem;
-    ssl_certificate_key     /home/ubuntu/www/ssl/www.your-app.com.key;
-    # ssl_dhparam 
-    ssl_dhparam             /home/ubuntu/www/ssl/dhparam.pem;
-
-    # 其他省略
-  }
-}
-</code></pre>
-<p>检查 Nginx 配置是否正确后重启</p>
-<pre class=" language-shell"><code class="language-shell">sudo service nginx configtest
-sudo service nginx restart
-</code></pre>
-<h2 id="后续维护"><a href="#后续维护" class="headerlink" title="后续维护"></a>后续维护</h2><p>Let’s Encrypt 的证书有效期是 90 天的，你需要定期 <code>renew</code> 重新申请，这部分 <code>acme.sh</code> 以及帮你做了，在安装的时候往 crontab 增加了一行每天执行的命令 <code>acme.sh --cron</code>:</p>
-<pre class=" language-shell"><code class="language-shell">$ crontab -l
-0 0 * * * "/home/.acme.sh"/acme.sh --cron --home "/home/.acme.sh" > /dev/null
-</code></pre>
-<blockquote>
-<p>下面这段你可以尝试执行一下，看看是否正确</p>
-</blockquote>
-<pre class=" language-shell"><code class="language-shell">"/home/.acme.sh"/acme.sh --cron --home "/home/.acme.sh"
-</code></pre>
-<p>这样就是正常的：</p>
-<pre class=" language-shell"><code class="language-shell">[Fri Dec 23 11:50:30 CST 2016] Renew: 'www.your-app.com'
-[Fri Dec 23 11:50:30 CST 2016] Skip, Next renewal time is: Tue Feb 21 03:20:54 UTC 2017
-[Fri Dec 23 11:50:30 CST 2016] Add '--force' to force to renew.
-[Fri Dec 23 11:50:30 CST 2016] Skipped www.your-app.com
-</code></pre>
-<p><code>acme.sh --cron</code> 命令执行以后将会 <strong>申请新的证书</strong> 并放到相同的文件路径。由于前面执行 <code>--installcert</code> 的时候告知了重新 Nginx 的方法，<code>acme.sh</code> 也同时会在证书更新以后重启 Nginx。</p>
-<h2 id="最后走一下-acme-sh-–cron-的流程看看能否正确执行"><a href="#最后走一下-acme-sh-–cron-的流程看看能否正确执行" class="headerlink" title="最后走一下 acme.sh –cron 的流程看看能否正确执行"></a>最后走一下 acme.sh –cron 的流程看看能否正确执行</h2><pre class=" language-shell"><code class="language-shell">acme.sh --cron -f
-</code></pre>
-<p>这个过程应该会得到这样的结果，并在最后重启 Nginx (不需要输入密码)</p>
-<pre class=" language-shell"><code class="language-shell">[Tue Dec 27 14:28:09 CST 2016] Renew: 'www.your-app.com'
-[Tue Dec 27 14:28:09 CST 2016] Single domain='www.your-app.com'
-[Tue Dec 27 14:28:09 CST 2016] Getting domain auth token for each domain
-[Tue Dec 27 14:28:09 CST 2016] Getting webroot for domain='www.your-app.com'
-[Tue Dec 27 14:28:09 CST 2016] _w='/home/www/your-app/current/public/'
-[Tue Dec 27 14:28:09 CST 2016] Getting new-authz for domain='www.your-app.com'
-[Tue Dec 27 14:28:16 CST 2016] The new-authz request is ok.
-[Tue Dec 27 14:28:16 CST 2016] www.your-app.com is already verified, skip.
-[Tue Dec 27 14:28:16 CST 2016] www.your-app.com is already verified, skip http-01.
-[Tue Dec 27 14:28:16 CST 2016] www.your-app.com is already verified, skip http-01.
-[Tue Dec 27 14:28:16 CST 2016] Verify finished, start to sign.
-[Tue Dec 27 14:28:19 CST 2016] Cert success.
-... 省略
-[Fri Dec 23 11:09:02 CST 2016] Your cert is in  /home/.acme.sh/www.your-app.com/www.your-app.com.cer 
-[Fri Dec 23 11:09:02 CST 2016] Your cert key is in  /home/.acme.sh/www.your-app.com/www.your-app.com.key 
-[Fri Dec 23 11:09:04 CST 2016] The intermediate CA cert is in  /home/.acme.sh/www.your-app.com/ca.cer 
-[Fri Dec 23 11:09:04 CST 2016] And the full chain certs is there:  /home/.acme.sh/www.your-app.com/fullchain.cer 
-[Tue Dec 27 14:28:22 CST 2016] Run Le_ReloadCmd: sudo service nginx force-reload
- * Reloading nginx nginx                                                                [ OK ] 
-[Tue Dec 27 14:28:22 CST 2016] Reload success
-</code></pre>
+                <p>加入岚图大家庭，知道了一句话，流水的发布会，铁打的卢博士，也许是反映出了卢总的兢兢业业吧。8月28日下午4点号，在天府成都举行的全新岚图梦想家发布会，也依然是勤勤恳恳的卢总，所以必须先上一张卢总的美照。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/85f61f0f-6ce6-4dc4-9306-16deba1fc473-1724928444000.jpg"></p>
+<p>没有能到现场参加发布会，但是好在有直播，透过屏幕，我们也感受到了全新梦想家带来的满满的诚意与干货升级。</p>
+<p>围绕外观、内饰、智能化和安全等全方面进行了升级，我们再一起回顾一下吧。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/def7b280-a32d-4bc5-a322-687b082aa55d-1724927899000.jpg"></p>
+<p>全新梦想家的外型尺寸并没有改变，但是外观也有很大的变化，首先是车头部分，全新设计的车头由34根华柱组成，象征着中国34个行政区，而且更加大气霸气，人们都说是“劳斯莱梦”。</p>
+<p>尾部变化比较明显的就是LOGO可以点亮，这点很时尚，也很新能源，不错的设计，其次尾灯采用了璀璨星光的尾灯，也进一步提升了豪华感。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/594c2fee-92cb-4e2a-af48-232260ff2227-1724929609000.png"></p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/d0380626-95bc-49fb-9e02-0aaf76af51de-1724929898000.jpg"></p>
+<p>另外，全新梦想家车身有杜若白、玄夜金、日夜辉、海月金、辉月青、旭日紫、玄英黑七种颜色，可以给用户更多、更个性的选择，七种颜色纵贯960万平方公里，从乌苏里旭日到帕米尔黄昏，也愿岚图梦想家能驰骋在960万平方公里的每个角落，给人们带来安全与享受。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/337c4f63-6096-400e-bb34-919165fced23-1724929067000.jpg"></p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/2ee9251d-4193-4886-b8a6-cac3d96618d4-1724930631000.png"></p>
+<p>梦行三千里，内蕴五千年，全新梦想家不仅外观颜色增加了，内饰配色也增加了，在原有棉米和驼棕的基础上，增加了云灰和木杏两种颜色，如果之前有这些配色该多好啊，我就可以选了。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/be2d8205-53de-4402-b5d1-bf0d7ab9edeb-1724930672000.jpg"></p>
+<p>内饰颜色的增加还只是开胃小菜，全新梦想家的车内变化可谓翻天覆地，彩电冰箱大沙发全部配齐，你想的到的有了，你想不到的也有了，看着都要流口水。</p>
+<p>首先是座椅，二排SPA级别的零重力座椅，9层座椅结构，乘坐更舒适，而座椅通风、加热更是提升了乘坐品质，智能扶手，科技感爆棚，手机无线充电、杯架，能想到的，都给咱安排上了。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/c93f961d-6819-4049-81c8-a4080af03ac9-1724943375000.png"></p>
+<p>除了座椅，当下流行的冰箱，这次全新梦想家也给安排上了，13L的超大容量，前后双开门，零下6度到50度的温控范围，超低能耗，可以实现24小时不断电。下方有冰箱，上面有电视，真是冰箱彩电一个都不能少，17.3寸高清娱乐屏，而且实现了8屏联动，只能说真香。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/976c2cee-3819-4988-9bfe-53fba41e638a-1724943619000.jpg"></p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/b515654b-fe95-41da-ba8c-07c741a996cb-1724943652000.jpg"></p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/c015e3cf-e4e4-4be4-ab80-a6f58c502d42-1724943834000.jpg"></p>
+<p>二排变化大，还只是开篇，前面变化更大，重新设计的中控台，由原来的三边屏改为双15.4寸高清大屏，29寸全景AR-HUD也安排上了，还有方向盘加热、双手机位无线快充、主驾头枕音响……变化多到都来不及记笔记。</p>
+<p>三排的修改也是积极听取用户的意见，三排可前后调节，车内空间更加灵活。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/9d9e4858-6584-437d-9d22-d05627bd927e-1724944441000.png"></p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/7005dee0-6acb-4ef8-8980-826647dc194b-1724944482000.jpg"></p>
+<p>增加配置的同时，安全也没有丝毫缩水，岚图的安全不用做笔记，这是常识。110km/h的追尾测试，2000MPa超高强度钢，“四不”云母电池、母婴级内饰材质，超短的百零制动距离这都不无体现出岚图对安全的重视。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/cf0e75fa-9f99-4431-98da-edfd53a6cf82-1724944660000.jpg"></p>
+<p>岚图的智能化一直被诟病，刚开始我也是到处吐槽，但是有时候仔细想一想，岚图坚持自研，央企的风格，也许走的很慢，但是走的很稳，一步一个脚印，给人以踏实感。这一次，岚图在坚持自研的基础上，积极与华为合作，带给消费者全新的选择。</p>
+<p>岚图自研的鲲鹏智驾、逍遥座舱，与华为合作的亁崑智驾、鸿蒙座舱，强强联合，智能再升级，打造智能MPV天花板。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/d24e1d1a-210f-47ef-a1e4-e59be44db919-1724945537000.png"></p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/bf0640d1-af62-4b60-97eb-57e26aced08e-1724945873000.jpg"></p>
+<p>最后的彩蛋，男神古天乐、女神李若彤，这对神仙眷侣，二十多年后再同台，勾起一代人的回忆。</p>
+<p>全新梦想家的价格也基本在预料之中，你是否满意？全新梦想家预定已超过一万台，预祝大卖。</p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/d6bdbf16-93e6-4c02-bd54-60bfdc9de02b-1724944616000.jpg"></p>
+<p><img src="https://prd-mat-1301141550.cos.ap-shanghai.myqcloud.com/img/community-new/pc/144115205310330981/bbb3a935-af5b-422e-a22f-2cdf4781d15d-1724945955000.jpg"></p>
 
                 
             </div>
@@ -540,7 +456,7 @@ sudo service nginx restart
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://imoke.win/2024/06/17/2208/">https://imoke.win/2024/06/17/2208/</a>
+                    <a href="https://imoke.win/2024/08/28/1925/">https://imoke.win/2024/08/28/1925/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -578,8 +494,8 @@ sudo service nginx restart
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%BD%91%E7%AB%99/">
-                                    <span class="chip bg-color">网站</span>
+                                <a href="/tags/%E5%B2%9A%E5%9B%BE%E6%A2%A6%E6%83%B3%E5%AE%B6/">
+                                    <span class="chip bg-color">岚图梦想家</span>
                                 </a>
                             
                         </div>
@@ -749,9 +665,10 @@ sudo service nginx restart
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2024/08/28/1925/">
                     <div class="card-image">
@@ -768,9 +685,9 @@ sudo service nginx restart
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-08-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -783,6 +700,7 @@ sudo service nginx restart
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -801,13 +719,13 @@ sudo service nginx restart
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/02/19/1628/">
+                <a href="/2024/06/17/2208/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="我的这一年">
+                        <img src="/medias/featureimages/37.jpg" class="responsive-img" alt="使用 acme.sh 给 Nginx 安装 Let’ s Encrypt 提供的免费 SSL 证书">
                         
-                        <span class="card-title">我的这一年</span>
+                        <span class="card-title">使用 acme.sh 给 Nginx 安装 Let’ s Encrypt 提供的免费 SSL 证书</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -818,7 +736,7 @@ sudo service nginx restart
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-02-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-06-17
                             </span>
                         <span class="publish-author">
                             
@@ -827,6 +745,14 @@ sudo service nginx restart
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%AB%99/">
+                        <span class="chip bg-color">网站</span>
+                    </a>
+                    
                 </div>
                 
             </div>
